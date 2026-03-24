@@ -1,5 +1,11 @@
 # BTP Authorization with XSUAA — Developer Guide
 
+## Table of Contents
+- [Overview](#overview) | [Authorization Hierarchy](#authorization-hierarchy)
+- [xs-security.json Reference](#xs-securityjson--complete-reference) | [Checking Scopes in Code](#checking-scopes-in-application-code)
+- [Service-to-Service](#service-to-service-communication) | [Debugging](#debugging-authorization-issues)
+- [Multi-Tenancy](#multi-tenancy-considerations) | [Best Practices](#best-practices)
+
 ## Overview
 
 XSUAA (XS Advanced UAA) is the authorization service for SAP BTP Cloud Foundry.

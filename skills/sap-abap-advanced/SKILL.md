@@ -1,12 +1,10 @@
 ---
 name: sap-abap-advanced
-description: |
-  Advanced ABAP development skill complementing the base sap-abap skill. Use when: working with
-  ABAP Cloud (Tier 1) vs Classic ABAP (Tier 2) distinction, ABAP Environment on BTP (Steampunk),
-  AMDP (ABAP Managed Database Procedures), ABAP for HANA optimization, abapGit workflows,
-  Released API checks (Cloudification Repository), ABAP RESTful HTTP handlers, dynamic
-  programming with RTTI/RTTC, or migrating classic ABAP to ABAP Cloud. Extends the base
-  sap-abap skill with cloud-era patterns.
+description: >
+  Advanced ABAP development skill extending the base sap-abap skill. Use when working with
+  ABAP Cloud (Tier 1) vs Classic (Tier 2), AMDP for HANA pushdown, abapGit workflows,
+  released API checks, or RTTI/RTTC dynamic programming. If the user mentions ABAP Cloud,
+  Steampunk, AMDP, abapGit, Tier 1/Tier 2 API, or classic-to-cloud migration, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -375,6 +373,16 @@ ENDMETHOD.
 6. **Parallel processing** — Use `CL_ABAP_PARALLEL` for cloud-compatible parallel RFC replacement
 7. **String operations** — Use string templates `|{ }|` over `CONCATENATE`; they're optimized in cloud runtime
 
+## Validation Workflow
+
+After writing or modifying ABAP Cloud code, run the compliance validator:
+
+```bash
+bash scripts/validate-abap-cloud.sh ./src
+```
+
+**Plan → Validate → Fix → Validate again** — do not proceed until validation passes with 0 errors.
+
 ## Gotchas
 
 - **No SE80/SE38 in Cloud**: Use ADT (Eclipse) exclusively for ABAP Cloud development
@@ -383,3 +391,25 @@ ENDMETHOD.
 - **abapGit and namespaces**: Namespace `/MYNAMESPACE/` objects need special serializer configuration
 - **Released API stability**: C1 (released) APIs have backward-compatible contract; C0 can change anytime
 - **Tier 2 is not "legacy"**: Tier 2 (Standard ABAP) is valid for S/4HANA Private/On-Premise — it's not deprecated
+
+## MCP Server Integration
+
+For live ABAP system access, add to your `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "vibing-steampunk": {
+      "command": "npx", "args": ["-y", "vibing-steampunk"],
+      "env": { "SAP_HOST": "https://your-system.abap.hana.ondemand.com",
+               "SAP_USER": "YOUR_USER", "SAP_PASSWORD": "YOUR_PASSWORD" }
+    },
+    "sap-docs": {
+      "command": "npx", "args": ["-y", "mcp-sap-docs"]
+    }
+  }
+}
+```
+
+- **Vibing Steampunk** (41-68 tools): Full ADT bridge — read/write ABAP source, syntax check, ATC, debug
+- **SAP Docs**: Offline ABAP documentation with hybrid BM25+semantic search

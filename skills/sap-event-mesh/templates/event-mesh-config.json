@@ -1,0 +1,42 @@
+{
+  "_comment": "SAP Event Mesh — Service Descriptor Template",
+  "_replace": "{{NAMESPACE}}, {{APP_NAME}}, {{S4_SID}}",
+
+  "emname": "{{APP_NAME}}-em",
+  "namespace": "{{NAMESPACE}}",
+  "version": "1.1.0",
+  "options": {
+    "management": true,
+    "messagingrest": true
+  },
+  "rules": {
+    "queueRules": {
+      "publishFilter": [
+        "${namespace}/+/+/ce/*"
+      ],
+      "subscribeFilter": [
+        "${namespace}/+/+/ce/*"
+      ]
+    },
+    "topicRules": {
+      "publishFilter": [
+        "${namespace}/+/+/ce/*"
+      ],
+      "subscribeFilter": [
+        "${namespace}/+/+/ce/*",
+        "sap/S4HANAOD/{{S4_SID}}/ce/sap/s4/beh/*"
+      ]
+    }
+  },
+  "resources": {
+    "units": {
+      "inbound": 10,
+      "outbound": 10
+    }
+  },
+  "xs-security": {
+    "oauth2-configuration": {
+      "credential-types": ["binding-secret"]
+    }
+  }
+}

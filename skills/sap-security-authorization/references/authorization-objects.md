@@ -1,5 +1,10 @@
 # Critical Authorization Objects — Full Reference
 
+## Table of Contents
+- [System Administration](#system-administration) | [User & Role Admin](#user--role-administration)
+- [RFC & Communication](#rfc--communication) | [FI](#financial-accounting-fi) | [MM](#materials-management-mm) | [SD](#sales--distribution-sd)
+- [HR](#human-resources-hr) | [Activity Codes](#activity-code-reference) | [Custom Auth Objects](#building-custom-authorization-objects)
+
 ## System Administration
 
 ### S_TCODE — Transaction Code Authorization

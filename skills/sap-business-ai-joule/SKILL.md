@@ -1,11 +1,10 @@
 ---
 name: sap-business-ai-joule
-description: |
-  SAP Business AI and Joule copilot development skill. Use when: building AI-powered SAP
-  applications, integrating SAP AI Core services, developing with SAP AI Launchpad, creating
-  generative AI hub scenarios, extending Joule with custom skills, working with SAP Business AI
-  embedded features, implementing AI Foundation on BTP, using vector engine in HANA Cloud,
-  building RAG applications with SAP data, or orchestrating LLM workflows in SAP context.
+description: >
+  SAP Business AI and Joule copilot development skill. Use when integrating SAP AI Core,
+  building GenAI Hub scenarios (GPT-4/Claude/Llama), extending Joule, using HANA Cloud
+  vector engine for RAG, or working with Document Information Extraction. If the user
+  mentions Joule, SAP AI Core, GenAI Hub, AI Foundation, or RAG with SAP data, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -18,6 +17,9 @@ metadata:
 ## Related Skills
 - `sap-hana-cloud` — Vector engine for embeddings, HANA Cloud as knowledge store
 - `sap-rap-comprehensive` — RAP-based data access for grounding AI with SAP data
+- `sap-cap-advanced` — CAP MCP plugin for AI-assisted development
+- `sap-build-apps` — AI-powered low-code app generation
+- `sap-integration-suite-advanced` — AI-assisted mapping in Integration Advisor
 
 ## Quick Start
 

@@ -1,16 +1,16 @@
 ---
 name: sap-gui-scripting
-description: |
-  SAP GUI Scripting automation skill. Use when: automating SAP GUI transactions with VBScript
-  or Python, recording and replaying GUI scripts, building RPA bots for SAP GUI, screen scraping
-  SAP transactions, automating repetitive data entry, batch processing in SAP GUI, or testing
-  SAP GUI transactions. Covers SAP GUI Scripting API, VBScript/Python automation, and integration
-  with RPA tools like SAP Build Process Automation Desktop Agent.
+description: >
+  SAP GUI Scripting automation skill. Use when automating SAP GUI transactions with VBScript
+  or Python, recording/replaying scripts, batch data entry, or screen scraping SAP screens.
+  If the user mentions SAP GUI automation, GUI scripting, VBScript for SAP, transaction
+  recording, or RPA with SAP GUI, use this skill.
+disable-model-invocation: true
 license: MIT
 metadata:
   author: SAP Skills Community
-  version: "1.0.0"
-  last_verified: "2026-03-24"
+  version: "1.1.0"
+  last_verified: "2026-03-25"
 ---
 
 # SAP GUI Scripting & Automation

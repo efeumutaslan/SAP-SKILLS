@@ -1,16 +1,16 @@
 ---
 name: sap-migration
-description: |
-  SAP Migration skill. Use when: migrating data to S/4HANA (greenfield or brownfield), using
-  SAP S/4HANA Migration Cockpit, SAP Data Services, SAP Migration Object Modeler, LSMW,
-  LTMC, custom migration programs, data mapping and cleansing, migration testing, cutover
-  planning, or converting from ECC to S/4HANA. Covers migration tools, strategies, data
-  quality, and best practices for system conversion and new implementation scenarios.
+description: >
+  SAP S/4HANA migration and data conversion skill. Use when migrating data with LTMC/Migration
+  Cockpit, planning cutover, cleansing data, or converting from ECC to S/4HANA. If the user
+  mentions S/4HANA migration, LTMC, data migration, brownfield/greenfield conversion, or
+  cutover planning, use this skill.
+disable-model-invocation: true
 license: MIT
 metadata:
   author: SAP Skills Community
-  version: "1.0.0"
-  last_verified: "2026-03-24"
+  version: "1.1.0"
+  last_verified: "2026-03-25"
 ---
 
 # SAP Migration — Data Migration & System Conversion
@@ -19,6 +19,8 @@ metadata:
 - `sap-s4hana-extensibility` — Custom objects to migrate in S/4HANA
 - `sap-testing-quality` — Migration testing and data validation
 - `sap-cloud-alm` — Migration project management and tracking
+- `sap-abap-advanced` — Classic ABAP → ABAP Cloud code migration
+- `sap-devops-cicd` — Transport management during migration cutover
 
 ## Quick Start
 

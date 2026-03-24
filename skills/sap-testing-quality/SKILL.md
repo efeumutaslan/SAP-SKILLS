@@ -1,11 +1,10 @@
 ---
 name: sap-testing-quality
-description: |
-  SAP testing and quality assurance skill. Use when: writing ABAP Unit tests, implementing
-  test doubles and dependency injection in ABAP, setting up CAP/Node.js or CAP/Java tests,
-  creating OPA5/UI5 integration tests, using SAP Cloud ALM for test management, implementing
-  contract testing for APIs, load testing SAP systems, working with ABAP Test Cockpit (ATC),
-  code inspector checks, test-driven development in SAP, or setting up CI/CD test pipelines.
+description: >
+  SAP testing and quality assurance skill. Use when writing ABAP Unit tests, implementing
+  test doubles (CL_OSQL/CL_CDS/CL_BOTD), setting up CAP tests, working with ATC/Code
+  Inspector, or building CI/CD test pipelines. If the user mentions ABAP Unit, test double,
+  ATC check, SAP test automation, or TDD in SAP, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -18,6 +17,9 @@ metadata:
 ## Related Skills
 - `sap-rap-comprehensive` — RAP BO testing patterns, EML-based test assertions
 - `sap-devops-cicd` — Integrating tests into CI/CD pipelines, ATC in CI
+- `sap-fiori-testing` — wdi5/OPA5 E2E tests for Fiori/UI5 apps
+- `sap-abap-advanced` — ABAP Cloud test patterns with released API constraints
+- `sap-cloud-alm` — Cloud ALM Test Management for enterprise test orchestration
 
 ## Quick Start
 

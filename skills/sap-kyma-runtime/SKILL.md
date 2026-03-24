@@ -1,11 +1,10 @@
 ---
 name: sap-kyma-runtime
-description: |
-  SAP BTP Kyma Runtime skill for Kubernetes-based extension development. Use when: deploying
-  microservices to Kyma, creating Kubernetes workloads on SAP BTP, configuring Kyma Functions
-  (serverless), setting up API Rules and service bindings, implementing event-driven extensions
-  with SAP Event Mesh, managing Kyma modules, working with Istio service mesh on BTP, building
-  side-by-side extensions on Kubernetes, or integrating Kyma with S/4HANA and other SAP systems.
+description: >
+  SAP BTP Kyma Runtime skill for Kubernetes-based extension development. Use when deploying
+  microservices to Kyma, creating serverless Functions, configuring API Rules, setting up
+  BTP service bindings, or building event-driven extensions. If the user mentions Kyma,
+  Kubernetes on BTP, Kyma Function, API Rule, or Istio service mesh, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -19,6 +18,8 @@ metadata:
 - `sap-s4hana-extensibility` — S/4HANA events and APIs consumed by Kyma extensions
 - `sap-devops-cicd` — CI/CD pipelines for Kyma deployments
 - `sap-security-authorization` — XSUAA/IAS integration for Kyma workloads
+- `sap-cap-advanced` — Deploying CAP applications on Kyma
+- `sap-event-mesh` — Event-driven Kyma Functions consuming SAP events
 
 ## Quick Start
 

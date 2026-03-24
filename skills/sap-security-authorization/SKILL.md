@@ -1,18 +1,16 @@
 ---
 name: sap-security-authorization
-description: |
-  SAP security, authorization, and compliance skill. Use when: designing PFCG roles,
-  working with authorization objects, analyzing SU53 errors, checking SoD conflicts,
-  implementing SOX/GDPR/ISO 27001 compliance, configuring SAP Cloud Identity Services
-  (IAS/IPS), setting up principal propagation, managing BTP security (XSUAA),
-  auditing user access, reviewing SAP_ALL assignments, detecting dormant users,
-  configuring Security Audit Log, or implementing data protection (ILM).
-  Covers on-premise, S/4HANA Cloud, and BTP.
+description: >
+  SAP security, authorization, and compliance skill. Use when designing PFCG roles,
+  analyzing SU53 auth errors, checking SoD conflicts, implementing SOX/GDPR compliance,
+  configuring IAS/IPS/XSUAA, or auditing user access. If the user mentions SAP role,
+  authorization object, SU53, SoD, SAP_ALL, principal propagation, or BTP security,
+  use this skill. Covers on-premise, S/4HANA Cloud, and BTP.
 license: MIT
 metadata:
   author: SAP Skills Community
-  version: "1.0.0"
-  last_verified: "2026-03-23"
+  version: "1.1.0"
+  last_verified: "2026-03-25"
 ---
 
 # SAP Security & Authorization
@@ -21,6 +19,9 @@ metadata:
 - `sap-s4hana-extensibility` — Extension authorization patterns
 - `sap-build-process-automation` — Approval workflow design
 - `sap-rap-comprehensive` — RAP authorization (global/instance)
+- `sap-cap-advanced` — CAP-level auth with XSUAA/IAS scopes
+- `sap-kyma-runtime` — Kubernetes API Rule JWT validation
+- `sap-successfactors` — RBP (Role-Based Permissions) model
 
 ## Quick Start
 
@@ -240,6 +241,16 @@ Key transactions: IRM_CUST, IRMPOL, ILM_DESTRUCTION, SARA
 | `references/compliance-checklist.md` | SOX, GDPR, ISO 27001 audit checklist |
 | `templates/xs-security.json` | BTP xs-security.json template |
 | `templates/role-naming-convention.md` | Role naming standard template |
+
+## Gotchas
+
+- **SAP_ALL is not a role**: SAP_ALL is a profile that grants all authorizations — never assign it to dialog users; use only for emergency/firefighter with full logging
+- **SU53 timing**: SU53 shows the LAST failed authorization check only — if multiple checks fail, you may see a misleading result; run a full trace via ST01 instead
+- **Derived roles and org levels**: Org-level values in derived roles override master role values completely — no merge; plan org structure before role design
+- **XSUAA vs. IAS**: XSUAA handles application-level auth on BTP; IAS handles identity/SSO — they complement, don't replace each other
+- **Role transport**: Roles transported via SCC1/STMS carry authorizations but NOT user assignments — reassign users in target system
+- **SoD is continuous**: SoD analysis is not one-time; new role assignments can introduce conflicts — schedule periodic GRC Access Risk Analysis
+- **PFCG generated profiles**: After changing a role in PFCG, you MUST generate the profile AND assign it to users for changes to take effect
 
 ## Source Documentation
 

@@ -1,13 +1,11 @@
 ---
 name: sap-rap-comprehensive
-description: |
-  SAP RAP (RESTful Application Programming Model) comprehensive development skill. Use when:
-  creating RAP business objects, writing behavior definitions (BDEF), modeling CDS view entities,
-  implementing validations/determinations/actions, handling draft-enabled scenarios, writing
-  EML (Entity Manipulation Language), implementing authorization checks, creating service
-  bindings, writing RAP unit tests with test doubles, working with managed/unmanaged
-  implementation types, configuring side effects, feature control, business events,
-  late numbering, or extending standard SAP RAP BOs. Covers BTP, S/4HANA Cloud, and On-Premise.
+description: >
+  SAP RAP (RESTful Application Programming Model) comprehensive development skill. Use when
+  creating RAP business objects, writing BDEF/CDS view entities, implementing validations/
+  determinations/actions, handling drafts, writing EML, or extending standard RAP BOs. If the
+  user mentions RAP, BDEF, behavior definition, CDS view entity, EML, managed/unmanaged BO,
+  or service binding, use this skill. Covers BTP, S/4HANA Cloud, and On-Premise.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -347,6 +345,49 @@ COMMIT ENTITIES
 | `templates/managed-bo.cds` | Complete managed RAP BO template |
 | `templates/handler-class.abap` | Handler class implementation template |
 | `templates/test-class.abap` | RAP unit test template with CL_BOTD |
+
+## Gotchas
+
+- **Managed vs. Unmanaged save**: Managed RAP handles INSERT/UPDATE/DELETE automatically; if you need custom save logic, use `managed with additional save` or `managed with unmanaged save` — don't fight the framework
+- **Draft and non-draft mismatch**: If root entity has draft, ALL compositions in the BO must also have draft — partial draft is not allowed
+- **EML in non-RAP context**: EML (`MODIFY ENTITIES OF ...`) can only be used inside RAP behavior implementations or with `IN LOCAL MODE` / `PRIVILEGED ACCESS` — not in arbitrary ABAP programs
+- **Late numbering gotcha**: With late numbering, `%pid` (preliminary ID) is only valid within the same LUW — never persist it; map to final key in `adjust_numbers`
+- **Authorization timing**: Global authorization is checked FIRST, then instance authorization — if global auth fails, instance auth never runs
+- **CDS view vs. view entity**: RAP requires CDS view ENTITIES (`define root view entity`), not classic CDS views (`define view`) — migration needed for legacy CDS
+- **Determination on modify vs. on save**: `on modify` runs immediately and can set fields visible to user; `on save` runs during finalize — choose based on UX needs
+- **Strict mode levels**: `strict(2)` is recommended for new BOs; it enforces additional validations and will be required in future releases
+
+## Validation Workflow
+
+After creating or modifying a RAP BO, validate completeness:
+
+```bash
+bash scripts/validate-rap-bo.sh ./src
+```
+
+**RAP BO checklist:**
+- [ ] Root view entity defined with `define root view entity`
+- [ ] BDEF has authorization control (master/dependent)
+- [ ] ETag field defined for concurrency control
+- [ ] Draft table defined (if draft enabled)
+- [ ] Service definition and binding created
+- [ ] At least one unit test class exists
+
+## MCP Server Integration
+
+```json
+{
+  "mcpServers": {
+    "vibing-steampunk": {
+      "command": "npx", "args": ["-y", "vibing-steampunk"],
+      "env": { "SAP_HOST": "https://your-system.abap.hana.ondemand.com",
+               "SAP_USER": "YOUR_USER", "SAP_PASSWORD": "YOUR_PASSWORD" }
+    }
+  }
+}
+```
+
+- **Vibing Steampunk**: Read/write BDEF, CDS, handler classes directly on SAP system via ADT
 
 ## Source Documentation
 

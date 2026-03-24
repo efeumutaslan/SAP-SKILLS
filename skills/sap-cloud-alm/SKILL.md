@@ -1,11 +1,10 @@
 ---
 name: sap-cloud-alm
-description: |
-  SAP Cloud ALM (Application Lifecycle Management) skill. Use when: managing SAP project
-  implementations, configuring SAP Cloud ALM for operations monitoring, setting up health
-  monitoring, real user monitoring, integration monitoring, job monitoring, business process
-  monitoring, change management, test management, deployment management, or using Cloud ALM
-  APIs. Covers SAP Cloud ALM for Implementation and SAP Cloud ALM for Operations.
+description: >
+  SAP Cloud ALM (Application Lifecycle Management) skill. Use when configuring health
+  monitoring, real user monitoring (RUM), integration/job monitoring, or managing SAP
+  implementations (change/test/deployment management). If the user mentions Cloud ALM,
+  SAP monitoring, RUM, health check, or ALM operations, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community

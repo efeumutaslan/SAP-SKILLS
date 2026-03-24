@@ -1,11 +1,10 @@
 ---
 name: sap-cap-advanced
-description: |
-  Advanced SAP CAP (Cloud Application Programming Model) skill. Use when: building multi-tenant
-  CAP applications, deploying CAP to Kyma/Kubernetes, integrating CAP MCP plugin for AI scenarios,
-  implementing CAP-level authorization with XSUAA/IAS, advanced CDS modeling (aspects, compositions,
-  temporal data), CAP with HANA Cloud native artifacts, CAP remote services and mashups, or
-  CAP extensibility. Extends the base sap-cap-capire skill with enterprise patterns.
+description: >
+  Advanced SAP CAP skill for enterprise patterns. Use when building multi-tenant CAP apps,
+  deploying to Kyma, implementing XSUAA/IAS auth, advanced CDS modeling, or CAP remote
+  services. If the user mentions CAP multitenancy, CAP Kyma deploy, mtxs, CAP extensibility,
+  or advanced CDS aspects/compositions, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -403,6 +402,21 @@ module.exports = class FeatureService extends cds.ApplicationService {
 6. **Streaming** — Use `$top/$skip` pagination for large result sets; CAP supports `@odata.maxpagesize`
 7. **HANA artifacts** — For complex analytics, use calculation views (`@cds.persistence.exists`) over CDS views
 
+## Validation Workflow
+
+Before deploying a CAP project, validate structure and configuration:
+
+```bash
+bash scripts/validate-cap-project.sh .
+```
+
+**Deploy checklist:**
+- [ ] CDS models compile (`cds build`)
+- [ ] Tests pass (`npm test`)
+- [ ] Auth annotations present on all services
+- [ ] mta.yaml or Helm chart configured for target platform
+- [ ] No hardcoded credentials in code
+
 ## Gotchas
 
 - **MTX sidecar version**: Must match `@sap/cds` version exactly; mismatch causes tenant operations to fail
@@ -411,3 +425,23 @@ module.exports = class FeatureService extends cds.ApplicationService {
 - **Schema evolution**: HDI doesn't support all schema changes (e.g., narrowing column types); plan migrations
 - **cds build output**: `--for cf` generates `mta.yaml`; `--for kyma` generates Helm chart — different structures
 - **Feature toggles**: Require `@sap/cds-mtx` package and MTX sidecar; not available in single-tenant mode
+
+## MCP Server Integration
+
+For AI-assisted CAP development, add to your `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "cap-mcp": {
+      "command": "npx", "args": ["-y", "@cap-js/mcp-server"]
+    },
+    "fiori-mcp": {
+      "command": "npx", "args": ["-y", "@sap-ux/fiori-mcp-server"]
+    }
+  }
+}
+```
+
+- **CAP MCP** (official): CDS model search + CAP documentation search
+- **Fiori MCP** (official): Fiori elements app generation, annotation editing

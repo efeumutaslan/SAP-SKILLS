@@ -1,11 +1,11 @@
 ---
 name: sap-hana-cloud
-description: |
-  SAP HANA Cloud database development and administration skill. Use when: writing SQLScript
-  stored procedures, creating calculation views, working with HANA Cloud HDI containers,
-  optimizing SQL queries for HANA, using HANA spatial or graph engines, managing HANA Cloud
-  instances, working with SAP HANA Cloud Data Lake, JSON document store, multi-model processing,
-  data tiering, or performance tuning. Covers SAP HANA Cloud QRC 2025+.
+description: >
+  SAP HANA Cloud database development and administration skill. Use when writing SQLScript
+  procedures, creating calculation views, managing HDI containers, optimizing HANA SQL,
+  using spatial/graph/JSON engines, or configuring data tiering (NSE). If the user mentions
+  HANA Cloud, SQLScript, calculation view, HDI container, or HANA performance tuning,
+  use this skill. Covers QRC 2025+.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -19,6 +19,8 @@ metadata:
 - `sap-rap-comprehensive` — CDS views consumed by HANA models
 - `sap-s4hana-extensibility` — Custom CDS/HANA artifacts in S/4HANA extensions
 - `sap-business-ai-joule` — Vector engine for AI/RAG scenarios
+- `sap-hana-tools` — hdbsql CLI, HDI management, and HANA client tooling
+- `sap-cap-advanced` — CAP with HANA Cloud native artifacts
 
 ## Quick Start
 
@@ -251,3 +253,19 @@ Key design principles:
 - **Session variables**: `SET 'variable' = 'value'` does NOT persist across connections in cloud
 - **Data Lake SQL subset**: HDLR supports SQL but not full SQLScript — no procedures in Data Lake
 - **Memory limits**: HANA Cloud has per-statement memory limits (default 8 GB) — monitor with `M_EXPENSIVE_STATEMENTS`
+
+## MCP Server Integration
+
+```json
+{
+  "mcpServers": {
+    "hana-mcp": {
+      "command": "npx", "args": ["-y", "hana-mcp-server"],
+      "env": { "HANA_HOST": "your-instance.hana.trial-us10.hanacloud.ondemand.com",
+               "HANA_PORT": "443", "HANA_USER": "YOUR_USER", "HANA_PASSWORD": "YOUR_PASSWORD" }
+    }
+  }
+}
+```
+
+- **HANA MCP**: Direct HANA Cloud database access for queries and administration

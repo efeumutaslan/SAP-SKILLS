@@ -1,16 +1,16 @@
 ---
 name: sap-devops-cicd
-description: |
-  SAP DevOps and CI/CD pipeline skill. Use when: setting up SAP CI/CD service on BTP,
-  configuring Jenkins pipelines for SAP projects (project "Piper"), implementing transport
-  management (CTS+, gCTS, TMS), automating ABAP deployments, building CAP CI/CD pipelines,
-  configuring SAP Cloud Transport Management, working with ABAP Environment Pipeline,
-  implementing GitOps for SAP, managing feature toggles, or setting up quality gates.
+description: >
+  SAP DevOps and CI/CD pipeline skill. Use when setting up SAP CI/CD service, configuring
+  Jenkins/Piper pipelines, implementing transport management (gCTS/TMS), or automating
+  ABAP/CAP deployments. If the user mentions SAP CI/CD, Piper, gCTS, transport management,
+  SAP pipeline, or ABAP deployment automation, use this skill.
+disable-model-invocation: true
 license: MIT
 metadata:
   author: SAP Skills Community
-  version: "1.0.0"
-  last_verified: "2026-03-23"
+  version: "1.1.0"
+  last_verified: "2026-03-25"
 ---
 
 # SAP DevOps & CI/CD

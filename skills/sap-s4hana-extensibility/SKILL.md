@@ -1,12 +1,12 @@
 ---
 name: sap-s4hana-extensibility
-description: |
-  SAP S/4HANA extensibility and Clean Core development skill. Use when: extending S/4HANA
-  with custom logic, implementing BAdIs, creating Custom Business Objects, working with
-  released APIs, checking Clean Core compliance, building side-by-side or in-app extensions,
-  using Key User extensibility tools, extending CDS views, extending RAP business objects,
-  working with the 3-tier/4-level model, wrapping classic APIs for ABAP Cloud consumption,
-  or planning S/4HANA extension architecture. Covers Public Cloud, Private Cloud, and On-Premise.
+description: >
+  SAP S/4HANA extensibility and Clean Core development skill. Use when implementing BAdIs,
+  creating Custom Business Objects, checking released API compliance, building side-by-side
+  or in-app extensions, using Key User tools, wrapping classic APIs for ABAP Cloud, or
+  planning extension architecture. If the user mentions Clean Core, S/4HANA extension,
+  BAdI, released API, Tier 1/Tier 2, or Key User extensibility, use this skill.
+  Covers Public Cloud, Private Cloud, and On-Premise.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -20,7 +20,8 @@ metadata:
 ## Related Skills
 - `sap-rap-comprehensive` — RAP business object development and extension
 - `sap-security-authorization` — Authorization for extensions
-- `sap-migration-modernization` — Migrating classic code to ABAP Cloud
+- `sap-abap-advanced` — ABAP Cloud Tier 1/Tier 2 patterns and classic-to-cloud migration
+- `sap-migration` — S/4HANA system conversion and data migration
 
 ## Quick Start
 
@@ -220,6 +221,31 @@ Read these files on demand for deeper guidance:
 | `templates/badi-implementation.abap` | Cloud BAdI implementation template |
 | `templates/tier2-wrapper.abap` | Tier 2 wrapper class template |
 | `templates/cds-extend.cds` | CDS view extension template |
+
+## Gotchas
+
+- **Cloud vs. on-premise BAdIs**: Cloud BAdIs (released for ABAP Cloud) are NOT the same as classic BAdIs — different registration, different lifecycle
+- **Released API stability**: C1-released APIs guarantee backward compatibility; C0 can change with any upgrade — always check release contract
+- **Key User extensibility limits**: Custom fields added via Key User tools have a maximum count per business object (~50) — plan ahead
+- **CBO naming**: Custom Business Objects created via Key User tools get auto-generated technical names (YY1_*) that cannot be changed later
+- **Side-by-side latency**: BTP extensions calling S/4HANA APIs add network latency — design for async where possible
+- **Tier 2 wrapper trap**: Creating too many Tier 2 wrappers defeats Clean Core purpose — prefer released alternatives first
+- **Extension stability**: In-app extensions survive upgrades; classic modifications (user exits) may break — always prefer in-app or side-by-side
+
+## Validation Workflow
+
+Before committing extension code, run Clean Core compliance check:
+
+```bash
+bash scripts/check-clean-core.sh ./src
+```
+
+**Checklist before release:**
+- [ ] No direct access to SAP standard tables (use CDS views/APIs)
+- [ ] No non-released function modules (check Cloudification Repository)
+- [ ] All CDS views have @AccessControl annotations
+- [ ] BAdI implementations use released interfaces only
+- [ ] Extension is covered by at least one unit test
 
 ## Source Documentation
 

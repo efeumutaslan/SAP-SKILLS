@@ -1,11 +1,10 @@
 ---
 name: sap-fiori-testing
-description: |
-  SAP Fiori and UI5 testing, accessibility, and modern UI skill. Use when: writing wdi5
-  (WebdriverIO + UI5) end-to-end tests, OPA5 integration tests, UIVeri5 visual regression
-  tests, implementing WCAG 2.1 accessibility in Fiori apps, using UI5 Web Components,
-  migrating UI5 JavaScript to TypeScript, testing Fiori Elements apps, or setting up
-  UI test automation in CI/CD pipelines. Extends base sapui5/fiori-tools skills.
+description: >
+  SAP Fiori/UI5 testing, accessibility, and modern UI skill. Use when writing wdi5 E2E tests,
+  OPA5 integration tests, implementing WCAG 2.1 accessibility, using UI5 Web Components, or
+  migrating UI5 to TypeScript. If the user mentions wdi5, OPA5, Fiori test, UI5 accessibility,
+  WCAG, or UI5 TypeScript migration, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -518,3 +517,21 @@ function OrderList({ orders }) {
 - **TypeScript types**: `@openui5/types` (open-source) vs `@sapui5/types` (requires SAP license)
 - **Web Components ≠ UI5**: `@ui5/webcomponents` is framework-agnostic; different API from `sap.m.*` controls
 - **Accessibility testing**: Automated tools catch ~30% of issues; manual screen reader testing is essential
+
+## MCP Server Integration
+
+```json
+{
+  "mcpServers": {
+    "ui5-mcp": {
+      "command": "npx", "args": ["-y", "@ui5/mcp-server"]
+    },
+    "fiori-mcp": {
+      "command": "npx", "args": ["-y", "@sap-ux/fiori-mcp-server"]
+    }
+  }
+}
+```
+
+- **UI5 MCP** (official, 10+ tools): API reference, linting, TS migration guidelines, app scaffolding
+- **Fiori MCP** (official): App generation, page management, annotation editing

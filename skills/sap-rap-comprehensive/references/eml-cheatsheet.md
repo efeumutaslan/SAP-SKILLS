@@ -1,5 +1,10 @@
 # EML (Entity Manipulation Language) — Quick Reference
 
+## Table of Contents
+- [Key Concepts](#key-concepts) | [READ ENTITIES](#read-entities) | [MODIFY ENTITIES](#modify-entities)
+- [COMMIT ENTITIES](#commit-entities) | [ROLLBACK ENTITIES](#rollback-entities) | [Draft-Specific EML](#draft-specific-eml)
+- [Response Structures](#response-structures) | [Common Patterns](#common-patterns-in-handler-methods)
+
 ## Key Concepts
 
 | Symbol | Meaning | Usage |

@@ -1,12 +1,10 @@
 ---
 name: sap-build-apps
-description: |
-  SAP Build Apps (formerly AppGyver) low-code/no-code development skill. Use when: building
-  business applications with SAP Build Apps visual editor, creating data models and logic flows,
-  integrating with BTP destinations and SAP services, building mobile/web apps without code,
-  working with SAP Build Apps Composer Pro, using visual formulas, configuring authentication
-  with SAP BTP, or deploying Build Apps to BTP. Covers visual development, data integration,
-  and deployment patterns.
+description: >
+  SAP Build Apps (formerly AppGyver) low-code/no-code development skill. Use when building
+  visual applications with drag-drop UI, data integration via BTP destinations, formula-based
+  logic, or deploying web/mobile apps to BTP. If the user mentions Build Apps, AppGyver,
+  low-code SAP app, visual formula, or no-code mobile app on BTP, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community

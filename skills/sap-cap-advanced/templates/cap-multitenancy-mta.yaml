@@ -1,0 +1,88 @@
+# CAP Multitenant Application — mta.yaml Template
+# Replace: {{APP_NAME}}, {{XSAPPNAME}}, {{DOMAIN}}
+_schema-version: "3.1"
+ID: {{APP_NAME}}-mt
+version: 1.0.0
+
+parameters:
+  enable-parallel-deployments: true
+
+modules:
+  - name: {{APP_NAME}}-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+    requires:
+      - name: {{APP_NAME}}-uaa
+      - name: {{APP_NAME}}-sm
+      - name: {{APP_NAME}}-registry
+      - name: {{APP_NAME}}-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+
+  - name: {{APP_NAME}}-mtx
+    type: nodejs
+    path: gen/mtx/sidecar
+    parameters:
+      memory: 256M
+    requires:
+      - name: {{APP_NAME}}-uaa
+      - name: {{APP_NAME}}-sm
+      - name: {{APP_NAME}}-registry
+      - name: {{APP_NAME}}-db
+    provides:
+      - name: mtx-api
+        properties:
+          mtx-url: ${default-url}
+
+  - name: {{APP_NAME}}-approuter
+    type: approuter.nodejs
+    path: approuter
+    parameters:
+      memory: 128M
+    requires:
+      - name: {{APP_NAME}}-uaa
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv
+          url: ~{srv-url}
+          forwardAuthToken: true
+
+resources:
+  - name: {{APP_NAME}}-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+
+  - name: {{APP_NAME}}-sm
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: service-manager
+      service-plan: container
+
+  - name: {{APP_NAME}}-registry
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: saas-registry
+      service-plan: application
+      config:
+        xsappname: {{XSAPPNAME}}
+        displayName: {{APP_NAME}}
+        appUrls:
+          getDependencies: ~{mtx-api/mtx-url}/-/cds/saas-provisioning/dependencies
+          onSubscription: ~{mtx-api/mtx-url}/-/cds/saas-provisioning/tenant/{tenantId}
+          onSubscriptionAsync: true
+          callbackTimeoutMillis: 300000
+
+  - name: {{APP_NAME}}-db
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: hana
+      service-plan: hdi-shared

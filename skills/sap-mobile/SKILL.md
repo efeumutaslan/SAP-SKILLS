@@ -1,11 +1,10 @@
 ---
 name: sap-mobile
-description: |
-  SAP Mobile development skill. Use when: building mobile apps with SAP Mobile Development Kit
-  (MDK), SAP BTP SDK for iOS/Android, SAP Mobile Cards, SAP Mobile Start, configuring SAP
-  Mobile Services, implementing offline-capable mobile apps, using OData offline store, push
-  notifications, mobile security (app passcode, biometrics, certificate pinning), or deploying
-  enterprise mobile apps. Covers MDK, native SDK, and mobile operations.
+description: >
+  SAP Mobile development skill. Use when building apps with MDK (Mobile Development Kit),
+  SAP BTP SDK for iOS/Android, configuring offline OData store, push notifications, or
+  mobile security. If the user mentions SAP mobile app, MDK, Mobile Services, offline
+  sync, or BTP SDK iOS/Android, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community

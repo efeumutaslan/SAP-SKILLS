@@ -12,8 +12,8 @@
     },
     "ui5-mcp": {
       "command": "npx",
-      "args": ["-y", "@niclas/ui5-mcp-server"],
-      "_comment": "Official UI5 MCP server — best practices, JS-to-TS migration"
+      "args": ["-y", "@ui5/mcp-server"],
+      "_comment": "Official UI5 MCP server — API reference, linting, TS migration, app scaffolding"
     },
     "hana-mcp": {
       "command": "npx",
@@ -25,6 +25,11 @@
         "HANA_PASSWORD": "YOUR_PASSWORD"
       },
       "_comment": "SAP HANA Cloud database access"
+    },
+    "mdk-mcp": {
+      "command": "npx",
+      "args": ["-y", "@sap/mdk-mcp-server"],
+      "_comment": "Official SAP MDK MCP server — mobile app generation, schema validation, deployment"
     },
     "sap-docs": {
       "command": "npx",

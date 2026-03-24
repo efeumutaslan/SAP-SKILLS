@@ -1,11 +1,10 @@
 ---
 name: sap-signavio
-description: |
-  SAP Signavio process management and mining skill. Use when: working with SAP Signavio Process
-  Manager, Process Intelligence (process mining), Process Governance, Process Collaboration Hub,
-  Journey Modeler, BPMN 2.0 modeling, process KPIs, conformance checking, process transformation,
-  or integrating Signavio with S/4HANA and SAP Build Process Automation. Covers Signavio APIs,
-  BPMN best practices, and process mining data preparation.
+description: >
+  SAP Signavio process management and mining skill. Use when modeling BPMN 2.0 processes,
+  running process mining (Process Intelligence), configuring process KPIs, or integrating
+  Signavio with S/4HANA and SBPA. If the user mentions Signavio, process mining, BPMN
+  modeling, conformance checking, or process transformation, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community

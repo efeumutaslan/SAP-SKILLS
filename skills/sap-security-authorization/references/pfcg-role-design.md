@@ -1,5 +1,11 @@
 # PFCG Role Design — Complete Guide
 
+## Table of Contents
+- [Role Design Workflow](#role-design-workflow) | [PFCG Tab-by-Tab](#pfcg-tab-by-tab-guide)
+- [Naming Convention](#role-naming-convention) | [Master/Derived Pattern](#masterderived-role-pattern)
+- [SU24 Maintenance](#su24-maintenance) | [Composite Roles](#composite-role-design)
+- [S/4HANA Cloud Roles](#s4hana-cloud-business-roles) | [Testing](#testing-roles) | [Common Mistakes](#common-mistakes)
+
 ## Role Design Workflow
 
 ```

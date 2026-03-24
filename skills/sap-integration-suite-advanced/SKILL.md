@@ -1,12 +1,10 @@
 ---
 name: sap-integration-suite-advanced
-description: |
-  Advanced SAP Integration Suite skill. Use when: writing Groovy scripts for iFlows, configuring
-  API Management policies (rate limiting, spike arrest, OAuth), deploying Edge Integration Cell,
-  building B2B/EDI integrations with Trading Partner Management (TPM), working with SAP Integration
-  Advisor, advanced message mapping with XSLT/Groovy, monitoring and alerting, or building
-  complex integration scenarios with Content Modifier, Splitter, Aggregator patterns. Extends
-  the base sap-btp-integration-suite skill.
+description: >
+  Advanced SAP Integration Suite skill. Use when writing Groovy scripts for iFlows, configuring
+  API Management policies, deploying Edge Integration Cell, or building B2B/EDI integrations.
+  If the user mentions CPI Groovy script, API policy, Edge Cell, TPM, or advanced iFlow
+  mapping, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community

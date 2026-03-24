@@ -1,12 +1,11 @@
 ---
 name: sap-build-process-automation
-description: |
-  SAP Build Process Automation (SBPA) development skill. Use when: creating business
-  workflows, designing approval processes, building decision tables, developing RPA bots,
-  creating forms, setting up API triggers, configuring event-driven processes from S/4HANA,
-  connecting to external systems via Actions, monitoring process instances, or designing
-  process visibility dashboards. Covers Process Builder, Decisions, Automations, Forms,
-  Visibility, and Actions on SAP BTP.
+description: >
+  SAP Build Process Automation skill for workflow, RPA, and business rules development.
+  Use when creating approval workflows, decision tables, RPA bots (Desktop Agent), API
+  triggers, or event-driven processes from S/4HANA. Also covers Forms, Actions (OData/REST
+  connectors), Visibility dashboards, and process monitoring. If the user mentions SBPA,
+  SAP workflow, approval process, decision table, or RPA bot on BTP, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -20,6 +19,9 @@ metadata:
 - `sap-s4hana-extensibility` — S/4HANA event sources and API integration
 - `sap-security-authorization` — BTP authorization for process automation
 - `sap-rap-comprehensive` — RAP business events as process triggers
+- `sap-event-mesh` — Event-driven triggers from S/4HANA business events
+- `sap-signavio` — Model processes in Signavio, automate in SBPA
+- `sap-integration-suite-advanced` — Complex API connectors for Actions
 
 ## Quick Start
 
@@ -200,6 +202,70 @@ Automation: Extract Invoice Data
 | `references/action-connector-guide.md` | Setting up API connectors with destinations |
 | `templates/approval-workflow.json` | Basic approval workflow template |
 | `templates/decision-table.json` | Decision table configuration template |
+
+## Gotchas
+
+- **Process vs. Automation**: "Process" = workflow (server-side); "Automation" = RPA bot (desktop agent, client-side) — they're complementary but very different
+- **Desktop Agent requirement**: RPA automations require SAP Build Desktop Agent installed on user's Windows machine — cannot run headless on server
+- **Decision table versioning**: Published decision tables are immutable; to change, create a new version and update the process to reference it
+- **Form data types**: SBPA forms support limited data types; complex nested structures may need flattening before passing to forms
+- **API trigger authentication**: API triggers use OAuth 2.0 from BTP — the calling system needs a proper service key, not basic auth
+- **Error handling scope**: Try-catch in processes catches only the enclosed steps; unhandled errors in subprocesses bubble up to parent
+- **Parallel branches and merge**: Parallel gateways must have matching merge gateway — orphaned branches cause process to hang indefinitely
+- **SAP Build Store content**: Pre-built content from SAP Build Store may need customization; don't assume it works out-of-the-box for your scenario
+
+## Advanced Patterns
+
+### Pattern 6: Multi-Level Approval with Escalation
+
+```
+[Form: Expense Report]
+    → [Decision: Approval Matrix]
+        IF amount > 50000 → [Approval: CFO] (deadline: 3 days)
+        IF amount > 10000 → [Approval: Director] (deadline: 2 days)
+        IF amount > 1000  → [Approval: Manager] (deadline: 1 day)
+        ELSE              → [Auto-Approve]
+    → [Condition: Approved?]
+        YES → [Action: Post to S/4HANA FI]
+              → [Mail: Confirmation to requester]
+        NO  → [Mail: Rejection with reason]
+              → [End]
+
+Escalation: If no response within deadline →
+    → [Action: Notify substitute approver]
+    → [Approval: Substitute] (deadline: 1 day)
+    → [Condition: Still no response?] → [Auto-Reject]
+```
+
+### Pattern 7: Parallel Processing with Aggregation
+
+```
+[API Trigger: Multi-Department Review]
+    → [Parallel Gateway]
+        ├── [Approval: Legal Review]
+        ├── [Approval: Finance Review]
+        └── [Approval: Compliance Review]
+    → [Merge Gateway: All must approve]
+    → [Decision: Final Assessment]
+    → [Action: Update status in S/4HANA]
+```
+
+### Pattern 8: Exception Handling
+
+```json
+{
+  "errorHandling": {
+    "type": "boundary-event",
+    "attachedTo": "Action: Create PO",
+    "errorType": "timeout",
+    "handler": [
+      { "step": "Log error to monitoring" },
+      { "step": "Retry with exponential backoff", "maxRetries": 3 },
+      { "step": "If still failing: route to manual queue" }
+    ]
+  }
+}
+```
 
 ## Source Documentation
 

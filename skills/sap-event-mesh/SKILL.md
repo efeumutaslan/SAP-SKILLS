@@ -1,12 +1,11 @@
 ---
 name: sap-event-mesh
-description: |
-  SAP Event Mesh and SAP Integration Suite Advanced Event Mesh skill. Use when: implementing
-  event-driven architectures on SAP BTP, publishing/consuming events between SAP and non-SAP
-  systems, working with SAP Event Mesh service, Advanced Event Mesh (Solace-based), CloudEvents
-  specification, S/4HANA business events, webhook subscriptions, message queues/topics, or
-  building event-driven microservices with CAP. Covers event broker setup, topic design, and
-  integration patterns.
+description: >
+  SAP Event Mesh and Advanced Event Mesh skill for event-driven architecture on BTP. Use when
+  publishing/consuming S/4HANA business events, configuring queues/topics, working with
+  CloudEvents, or building event-driven microservices with CAP. If the user mentions Event
+  Mesh, SAP business events, CloudEvents, message queue on BTP, or event-driven SAP
+  integration, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community

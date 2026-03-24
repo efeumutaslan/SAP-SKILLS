@@ -1,11 +1,10 @@
 ---
 name: sap-hana-tools
-description: |
-  SAP HANA developer tooling and CLI skill. Use when: using HANA Developer CLI (hdblcl),
-  managing HDI containers via CLI, working with HANA Cloud Central, using HANA Database
-  Explorer, running interactive SQL queries, managing HANA Cloud instances, working with
-  hdbsql command-line, SAP HANA Client tools, or automating HANA operations via scripts
-  and MCP servers. Extends sap-hana-cloud with operational tooling focus.
+description: >
+  SAP HANA developer tooling and CLI skill. Use when working with hdbsql CLI, managing HDI
+  containers, using HANA Database Explorer, or automating HANA operations. If the user
+  mentions hdbsql, HDI container management, HANA Cloud Central, or HANA client tools,
+  use this skill. Extends sap-hana-cloud with operational tooling focus.
 license: MIT
 metadata:
   author: SAP Skills Community

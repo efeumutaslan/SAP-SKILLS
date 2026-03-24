@@ -1,5 +1,12 @@
 # Behavior Definition (BDEF) — Complete Syntax Reference
 
+## Table of Contents
+- [Header Options](#header-options) | [Entity Definition](#entity-definition) | [Standard Operations](#standard-operations)
+- [Field Characteristics](#field-characteristics) | [Validations](#validations) | [Prechecks](#prechecks)
+- [Determinations](#determinations) | [Actions](#actions) | [Determine Actions](#determine-actions)
+- [Side Effects](#side-effects) | [Draft Handling](#draft-handling) | [Composition](#composition-parent-child)
+- [Mapping](#mapping) | [Business Events](#business-events) | [Complete Example](#complete-example)
+
 ## Header Options
 
 ```cds

@@ -1,11 +1,11 @@
 ---
 name: sap-successfactors
-description: |
-  SAP SuccessFactors HXM development and integration skill. Use when: building SuccessFactors
-  extensions, working with OData APIs for Employee Central, configuring intelligent services,
-  implementing custom MDF objects, creating integration flows with SAP BTP, using SuccessFactors
-  Extension Center, working with People Analytics OData, building composite applications,
-  implementing role-based permissions, or extending SuccessFactors with BTP side-by-side apps.
+description: >
+  SAP SuccessFactors HXM development and integration skill. Use when working with SF OData
+  APIs (Employee Central, Recruiting, Performance), creating MDF custom objects, configuring
+  Intelligent Services events, implementing RBP permissions, or building BTP extensions for
+  SuccessFactors. If the user mentions SuccessFactors, Employee Central, SF API, MDF object,
+  or HR integration with SAP, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
@@ -18,6 +18,9 @@ metadata:
 ## Related Skills
 - `sap-security-authorization` — XSUAA/IAS for BTP-side extensions
 - `sap-s4hana-extensibility` — Hybrid HR/Finance integration scenarios
+- `sap-integration-suite-advanced` — Pre-built SF iFlows and API Management
+- `sap-event-mesh` — SF Intelligent Services events to BTP Event Mesh
+- `sap-cap-advanced` — CAP-based BTP extensions consuming SF APIs
 
 ## Quick Start
 
@@ -224,3 +227,78 @@ GET /odata/v2/cust_headcountReport
 - **SAML assertion clock skew**: Assertions must have `NotBefore` / `NotOnOrAfter` within 5 min of server time
 - **MDF field limits**: Custom MDF objects max 150 fields; plan field usage carefully
 - **Integration Center vs. Suite**: Integration Center (within SF) for simple scenarios; SAP Integration Suite for complex multi-system flows
+
+## Advanced Patterns
+
+### Extension Center — Custom UI Injection
+
+```javascript
+// SF Extension Center: inject custom UI into SuccessFactors pages
+// Hosted on BTP HTML5 Application Repository
+// Registered via Admin Center → Extension Center
+
+// manifest.json (Fiori-style)
+{
+  "sap.app": {
+    "id": "com.company.sf.custom-onboarding",
+    "type": "application",
+    "applicationVersion": { "version": "1.0.0" }
+  },
+  "sap.sf.extension": {
+    "targetPage": "EmployeeProfile",
+    "position": "belowHeader",
+    "label": "Custom Onboarding Checklist"
+  }
+}
+```
+
+### Employee Central → S/4HANA Replication
+
+```
+SF Employee Central               SAP S/4HANA
+     │                                 │
+     ├─ Employee master data ─────────►│ Business Partner (BP)
+     │  (HCM replication)              │
+     ├─ Org structure ────────────────►│ Org Management
+     │                                 │
+     ├─ Cost center assignment ───────►│ CO cost centers
+     │                                 │
+     └─ Compensation data ────────────►│ Payroll (optional)
+```
+
+**Replication setup:**
+1. Enable API Center in SF (Admin Center → Company Settings)
+2. Configure Integration Center for employee replication
+3. Map SF fields to S/4HANA BP fields
+4. Set up delta sync (lastModifiedDateTime filter)
+
+### MDF Business Rules Engine
+
+```
+Rule Type: onChange
+Object: cust_LeaveRequest
+Trigger Field: cust_leaveType
+
+IF cust_leaveType == "ANNUAL"
+  THEN SET cust_requiresApproval = TRUE
+  AND SET cust_maxDays = 30
+
+IF cust_leaveType == "SICK"
+  AND cust_days > 3
+  THEN SET cust_requiresMedicalCert = TRUE
+
+IF cust_startDate < TODAY()
+  THEN RAISE ERROR "Leave start date cannot be in the past"
+```
+
+## Bundled Resources
+
+| File | When to Read |
+|------|-------------|
+| `references/sf-api-reference.md` | Full SF API entity reference with query patterns |
+
+## Source Documentation
+
+- [SAP SuccessFactors API Reference](https://help.sap.com/docs/SAP_SUCCESSFACTORS_PLATFORM/d599f15995d348a1b45ba5603e2aba9b)
+- [SF Extension Center Guide](https://help.sap.com/docs/SAP_SUCCESSFACTORS_PLATFORM/f8796a3df8204c57b5f7f7c0776cde72)
+- [SF OData API Business Rules](https://help.sap.com/docs/SAP_SUCCESSFACTORS_PLATFORM)

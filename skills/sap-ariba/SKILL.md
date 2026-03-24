@@ -1,11 +1,10 @@
 ---
 name: sap-ariba
-description: |
-  SAP Ariba procurement and sourcing development skill. Use when: integrating with Ariba APIs
-  (Procurement, Sourcing, Contract, Supplier Management), building custom Ariba extensions,
-  working with Ariba Cloud Integration Gateway (CIG), configuring Ariba Network transactions
-  (cXML, EDI), developing Ariba custom forms, managing supplier lifecycle events, or integrating
-  Ariba with S/4HANA procurement. Covers Ariba APIs, cXML protocol, Open APIs, and integration patterns.
+description: >
+  SAP Ariba procurement and sourcing skill. Use when integrating with Ariba APIs, working
+  with cXML/PunchOut, configuring Cloud Integration Gateway (CIG), or connecting Ariba
+  Network with S/4HANA. If the user mentions Ariba, cXML, PunchOut, procurement integration,
+  or supplier management API, use this skill.
 license: MIT
 metadata:
   author: SAP Skills Community
