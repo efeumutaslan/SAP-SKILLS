@@ -1,0 +1,46 @@
+{
+  "mcpServers": {
+    "sap-docs": {
+      "command": "npx",
+      "args": ["-y", "mcp-sap-docs"],
+      "_comment": "Search SAP developer documentation"
+    },
+    "sap-notes": {
+      "command": "npx",
+      "args": ["-y", "mcp-sap-notes"],
+      "env": {
+        "SAP_PASSPORT_PATH": "path/to/your/sap-passport.p12",
+        "SAP_PASSPORT_PASSWORD": "YOUR_PASSWORD"
+      },
+      "_comment": "Search SAP Notes and Knowledge Base Articles"
+    },
+    "sap-security": {
+      "command": "npx",
+      "args": ["-y", "sap-security-mcp"],
+      "env": {
+        "SAP_HOST": "your-system-hostname",
+        "SAP_SYSNR": "00",
+        "SAP_CLIENT": "100",
+        "SAP_USER": "YOUR_USER",
+        "SAP_PASSWORD": "YOUR_PASSWORD"
+      },
+      "_comment": "SAP security analysis — roles, SoD, dormant users, compliance"
+    },
+    "sap-gui": {
+      "command": "npx",
+      "args": ["-y", "mcp-sap-gui"],
+      "_comment": "SAP GUI automation and transaction execution"
+    },
+    "datasphere-mcp": {
+      "command": "npx",
+      "args": ["-y", "sap-datasphere-mcp"],
+      "env": {
+        "DSP_HOST": "your-tenant.eu10.hcs.cloud.sap",
+        "DSP_TOKEN_URL": "your-tenant.authentication.eu10.hana.ondemand.com",
+        "DSP_CLIENT_ID": "YOUR_CLIENT_ID",
+        "DSP_CLIENT_SECRET": "YOUR_CLIENT_SECRET"
+      },
+      "_comment": "SAP Datasphere — 45 tools for data warehouse operations"
+    }
+  }
+}

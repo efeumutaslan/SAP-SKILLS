@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "integration-suite": {
+      "command": "npx",
+      "args": ["-y", "mcp-integration-suite"],
+      "env": {
+        "CPI_HOST": "your-tenant.it-cpi.cfapps.eu10.hana.ondemand.com",
+        "CPI_TOKEN_URL": "your-tenant.authentication.eu10.hana.ondemand.com",
+        "CPI_CLIENT_ID": "YOUR_CLIENT_ID",
+        "CPI_CLIENT_SECRET": "YOUR_CLIENT_SECRET"
+      },
+      "_comment": "SAP Integration Suite / Cloud Integration operations"
+    },
+    "odata-proxy": {
+      "command": "npx",
+      "args": ["-y", "odata-mcp-proxy"],
+      "_comment": "Config-driven OData/REST to MCP bridge — edit odata-proxy-config.json"
+    },
+    "sap-docs": {
+      "command": "npx",
+      "args": ["-y", "mcp-sap-docs"],
+      "_comment": "Search SAP developer documentation"
+    },
+    "sf-mcp": {
+      "command": "npx",
+      "args": ["-y", "sf-mcp"],
+      "env": {
+        "SF_API_URL": "https://api.successfactors.com",
+        "SF_COMPANY_ID": "YOUR_COMPANY_ID",
+        "SF_USER": "YOUR_USER",
+        "SF_PASSWORD": "YOUR_PASSWORD"
+      },
+      "_comment": "SAP SuccessFactors — 43 HR tools"
+    }
+  }
+}

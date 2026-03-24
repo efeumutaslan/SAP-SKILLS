@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code local settings (keep .claude/settings.json if shared)
+.claude/settings.local.json
+
+# Environment files with credentials
+.env
+.env.local
+*.p12
+*.pem
+*.key
+
+# Temporary files
+*.tmp
+*.bak

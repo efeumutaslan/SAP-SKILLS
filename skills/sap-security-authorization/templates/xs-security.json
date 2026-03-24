@@ -1,0 +1,83 @@
+{
+  "_comment": "BTP Application Security Descriptor Template — Replace {{PLACEHOLDER}} values",
+  "xsappname": "{{YOUR_APP_NAME}}",
+  "tenant-mode": "dedicated",
+  "description": "{{App description}}",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Read",
+      "description": "Read access to application data"
+    },
+    {
+      "name": "$XSAPPNAME.Write",
+      "description": "Write access to application data"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Full administrative access"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "CompanyCode",
+      "description": "Restrict access by company code",
+      "valueType": "string",
+      "valueRequired": false
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "Read-only access",
+      "scope-references": [
+        "$XSAPPNAME.Read"
+      ],
+      "attribute-references": [
+        "CompanyCode"
+      ]
+    },
+    {
+      "name": "Editor",
+      "description": "Read and write access",
+      "scope-references": [
+        "$XSAPPNAME.Read",
+        "$XSAPPNAME.Write"
+      ],
+      "attribute-references": [
+        "CompanyCode"
+      ]
+    },
+    {
+      "name": "Administrator",
+      "description": "Full access including admin functions",
+      "scope-references": [
+        "$XSAPPNAME.Read",
+        "$XSAPPNAME.Write",
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "{{AppName}}_Viewer",
+      "description": "View application data",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    },
+    {
+      "name": "{{AppName}}_Editor",
+      "description": "Edit application data",
+      "role-template-references": [
+        "$XSAPPNAME.Editor"
+      ]
+    },
+    {
+      "name": "{{AppName}}_Admin",
+      "description": "Administer application",
+      "role-template-references": [
+        "$XSAPPNAME.Administrator"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "cap-mcp": {
+      "command": "npx",
+      "args": ["-y", "@cap-js/mcp-server"],
+      "_comment": "Official SAP CAP MCP server — CDS modeling, service definitions, deployment"
+    },
+    "fiori-mcp": {
+      "command": "npx",
+      "args": ["-y", "@sap-ux/fiori-mcp-server"],
+      "_comment": "Official SAP Fiori MCP server — app generation, annotation editing"
+    },
+    "ui5-mcp": {
+      "command": "npx",
+      "args": ["-y", "@niclas/ui5-mcp-server"],
+      "_comment": "Official UI5 MCP server — best practices, JS-to-TS migration"
+    },
+    "hana-mcp": {
+      "command": "npx",
+      "args": ["-y", "hana-mcp-server"],
+      "env": {
+        "HANA_HOST": "your-hana-instance.hana.trial-us10.hanacloud.ondemand.com",
+        "HANA_PORT": "443",
+        "HANA_USER": "YOUR_USER",
+        "HANA_PASSWORD": "YOUR_PASSWORD"
+      },
+      "_comment": "SAP HANA Cloud database access"
+    },
+    "sap-docs": {
+      "command": "npx",
+      "args": ["-y", "mcp-sap-docs"],
+      "_comment": "Search SAP developer documentation"
+    }
+  }
+}

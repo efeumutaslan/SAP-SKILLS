@@ -1,0 +1,117 @@
+{
+  "_comment": "SAP Build Process Automation — Approval Workflow Template",
+  "_description": "Replace {{PLACEHOLDER}} values with your actual configuration",
+
+  "processName": "{{ProcessName}}_ApprovalWorkflow",
+  "description": "Approval workflow for {{BusinessObject}}",
+
+  "trigger": {
+    "type": "form",
+    "formName": "{{BusinessObject}}_RequestForm",
+    "fields": [
+      { "name": "requestId", "type": "string", "label": "Request ID", "readOnly": true },
+      { "name": "requestTitle", "type": "string", "label": "Request Title", "required": true },
+      { "name": "description", "type": "text", "label": "Description", "required": true },
+      { "name": "amount", "type": "number", "label": "Amount", "required": true },
+      { "name": "currency", "type": "string", "label": "Currency", "default": "EUR" },
+      { "name": "department", "type": "string", "label": "Department", "required": true },
+      { "name": "requesterEmail", "type": "string", "label": "Requester Email", "required": true },
+      { "name": "attachments", "type": "file", "label": "Attachments", "required": false }
+    ]
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "type": "decision",
+      "name": "DetermineApprovalLevel",
+      "decisionTable": {
+        "hitPolicy": "firstMatch",
+        "rules": [
+          { "if": { "amount": "> 50000" }, "then": { "approvalLevel": "Director", "slaHours": 48 } },
+          { "if": { "amount": "> 10000" }, "then": { "approvalLevel": "Manager", "slaHours": 24 } },
+          { "if": { "amount": "<= 10000" }, "then": { "approvalLevel": "TeamLead", "slaHours": 8 } }
+        ]
+      }
+    },
+    {
+      "order": 2,
+      "type": "condition",
+      "name": "CheckAutoApproval",
+      "condition": "amount <= 1000",
+      "trueAction": "skipToStep5",
+      "falseAction": "continueToStep3"
+    },
+    {
+      "order": 3,
+      "type": "approval",
+      "name": "ManagerApproval",
+      "approverType": "{{approvalLevel}} of {{department}}",
+      "formName": "{{BusinessObject}}_ApprovalForm",
+      "dueDateHours": "{{slaHours}}",
+      "outcomes": {
+        "approve": "continueToStep4",
+        "reject": "skipToStep6"
+      }
+    },
+    {
+      "order": 4,
+      "type": "action",
+      "name": "CreateInS4HANA",
+      "actionProject": "S4HANA_{{BusinessObject}}_Actions",
+      "operation": "POST",
+      "destination": "{{S4HANA_DESTINATION}}",
+      "inputMapping": {
+        "title": "process.requestTitle",
+        "amount": "process.amount",
+        "currency": "process.currency",
+        "department": "process.department"
+      },
+      "outputMapping": {
+        "process.objectId": "response.ObjectID",
+        "process.objectStatus": "response.Status"
+      },
+      "errorHandling": {
+        "onError": "routeToStep7"
+      }
+    },
+    {
+      "order": 5,
+      "type": "mail",
+      "name": "NotifyApproval",
+      "to": "{{requesterEmail}}",
+      "subject": "{{BusinessObject}} Request Approved: {{requestTitle}}",
+      "body": "Your request has been approved. Reference: {{objectId}}"
+    },
+    {
+      "order": 6,
+      "type": "mail",
+      "name": "NotifyRejection",
+      "to": "{{requesterEmail}}",
+      "subject": "{{BusinessObject}} Request Rejected: {{requestTitle}}",
+      "body": "Your request has been rejected. Please contact your manager for details."
+    },
+    {
+      "order": 7,
+      "type": "form",
+      "name": "ErrorHandlingForm",
+      "formType": "task",
+      "assignTo": "process.requesterEmail",
+      "description": "An error occurred creating the {{BusinessObject}}. Please review and retry."
+    }
+  ],
+
+  "processVariables": [
+    { "name": "requestId", "type": "string" },
+    { "name": "requestTitle", "type": "string" },
+    { "name": "description", "type": "string" },
+    { "name": "amount", "type": "number" },
+    { "name": "currency", "type": "string" },
+    { "name": "department", "type": "string" },
+    { "name": "requesterEmail", "type": "string" },
+    { "name": "approvalLevel", "type": "string" },
+    { "name": "slaHours", "type": "number" },
+    { "name": "objectId", "type": "string" },
+    { "name": "objectStatus", "type": "string" }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "vibing-steampunk": {
+      "command": "npx",
+      "args": ["-y", "vibing-steampunk"],
+      "env": {
+        "SAP_HOST": "https://your-system.abap.hana.ondemand.com",
+        "SAP_USER": "YOUR_USER",
+        "SAP_PASSWORD": "YOUR_PASSWORD"
+      },
+      "_comment": "ABAP ADT bridge — read/write ABAP source, syntax check, ATC, debug"
+    },
+    "sap-docs": {
+      "command": "npx",
+      "args": ["-y", "mcp-sap-docs"],
+      "_comment": "Search SAP developer documentation"
+    },
+    "sap-notes": {
+      "command": "npx",
+      "args": ["-y", "mcp-sap-notes"],
+      "env": {
+        "SAP_PASSPORT_PATH": "path/to/your/sap-passport.p12",
+        "SAP_PASSPORT_PASSWORD": "YOUR_PASSWORD"
+      },
+      "_comment": "Search SAP Notes and Knowledge Base Articles"
+    },
+    "cloudification-repo": {
+      "command": "npx",
+      "args": ["-y", "sap-released-objects-mcp-server"],
+      "_comment": "Check released SAP objects for ABAP Cloud / Clean Core (Level A/B/C/D)"
+    }
+  }
+}

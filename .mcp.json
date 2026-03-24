@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/.mcp.schema.json",
+  "_description": "Default MCP configuration for SAP Skills project. Copy a role-specific profile from mcp-configs/ for your needs.",
+  "mcpServers": {
+    "sap-docs": {
+      "command": "npx",
+      "args": ["-y", "mcp-sap-docs"],
+      "_comment": "Search SAP developer documentation — no credentials needed"
+    }
+  }
+}
