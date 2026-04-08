@@ -1,0 +1,94 @@
+<!--
+  XML View template — worklist page with search, sort, refresh, and navigation.
+  Replace {{APP_NAMESPACE}}, {{VIEW_NAME}}, and {{ENTITY_SET}} with your values.
+-->
+<mvc:View
+  controllerName="{{APP_NAMESPACE}}.controller.{{VIEW_NAME}}"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:f="sap.f"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  displayBlock="true">
+
+  <Page
+    id="page"
+    title="{i18n>worklistTitle}"
+    busy="{viewModel>/busy}"
+    busyIndicatorDelay="{viewModel>/delay}">
+
+    <customHeader>
+      <Bar>
+        <contentLeft>
+          <Title text="{i18n>worklistTitle}" />
+        </contentLeft>
+        <contentRight>
+          <Button icon="sap-icon://refresh" press=".onRefresh" tooltip="{i18n>refresh}" />
+          <Button icon="sap-icon://add"     press=".onOpenAddDialog" tooltip="{i18n>add}" />
+        </contentRight>
+      </Bar>
+    </customHeader>
+
+    <subHeader>
+      <Toolbar>
+        <SearchField width="60%" search=".onSearch" placeholder="{i18n>searchPlaceholder}" />
+        <ToolbarSpacer />
+        <Switch state="false" customTextOn="DESC" customTextOff="ASC" change=".onSort" />
+      </Toolbar>
+    </subHeader>
+
+    <content>
+      <List
+        id="productsList"
+        items="{
+          path: '/{{ENTITY_SET}}',
+          parameters: {
+            $count: true,
+            $select: 'ID,Name,Category,Price,CurrencyCode,Stock'
+          }
+        }"
+        growing="true"
+        growingThreshold="20"
+        growingScrollToLoad="true"
+        noDataText="{i18n>noDataText}">
+
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>listTitle} ({/{{ENTITY_SET}}/$count})" />
+          </Toolbar>
+        </headerToolbar>
+
+        <ObjectListItem
+          title="{Name}"
+          number="{
+            parts: [{path: 'Price'}, {path: 'CurrencyCode'}],
+            type: 'sap.ui.model.type.Currency',
+            formatOptions: { showMeasure: false }
+          }"
+          numberUnit="{CurrencyCode}"
+          type="Navigation"
+          press=".onItemPress">
+          <firstStatus>
+            <ObjectStatus
+              text="{path: 'Stock', formatter: '.formatter.stockText'}"
+              state="{path: 'Stock', formatter: '.formatter.stockState'}" />
+          </firstStatus>
+          <attributes>
+            <ObjectAttribute text="{Category}" />
+            <ObjectAttribute text="{= ${Stock} + ' in stock' }" />
+          </attributes>
+        </ObjectListItem>
+
+      </List>
+    </content>
+
+    <footer>
+      <Toolbar>
+        <ToolbarSpacer />
+        <Button text="{i18n>save}"   type="Emphasized" press=".onSave" />
+        <Button text="{i18n>delete}" type="Reject"     press=".onDelete" />
+      </Toolbar>
+    </footer>
+
+  </Page>
+</mvc:View>

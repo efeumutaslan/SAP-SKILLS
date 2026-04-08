@@ -1,7 +1,7 @@
 # SAP Skills for Claude Code
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-23-brightgreen.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-25-brightgreen.svg)](skills/)
 [![Agents](https://img.shields.io/badge/Agents-4-orange.svg)](agents/)
 [![Commands](https://img.shields.io/badge/Commands-5-blue.svg)](commands/)
 [![MCP Configs](https://img.shields.io/badge/MCP_Configs-4-purple.svg)](mcp-configs/)
@@ -78,7 +78,7 @@ After installation, restart Claude Code. The skills auto-activate when you menti
 
 > **Common mistake:** Do not paste the GitHub repo title (e.g., `GitHub - efeumutaslan/SAP-SKILLS: ...`) into your terminal. Only run the `git clone` commands above.
 
-## Available Skills (23)
+## Available Skills (25)
 
 ### Core SAP Development (Phase 1)
 
@@ -122,6 +122,13 @@ After installation, restart Claude Code. The skills auto-activate when you menti
 | [sap-cap-advanced](skills/sap-cap-advanced/) | CAP | Multitenancy, Kyma deploy, remote services, feature toggles |
 | [sap-fiori-testing](skills/sap-fiori-testing/) | UI Testing | wdi5, OPA5, WCAG 2.1 accessibility, TypeScript, Web Components |
 | [sap-integration-suite-advanced](skills/sap-integration-suite-advanced/) | Integration | Groovy scripting, API Management policies, Edge Cell, B2B/EDI |
+
+### Core Developer Essentials (Phase 5)
+
+| Skill | Domain | Description |
+|-------|--------|-------------|
+| [sap-ui5-fiori](skills/sap-ui5-fiori/) | UI5/Fiori | SAPUI5 development, MVC, XML views, manifest, routing, Fiori Elements (LROP/OVP/ALP) |
+| [sap-odata](skills/sap-odata/) | API | OData v2/v4 protocol — design (RAP/CAP/SEGW), consumption, query options, batch, CSRF |
 
 ## Agents (4)
 
