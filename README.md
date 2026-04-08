@@ -11,34 +11,72 @@ A comprehensive collection of SAP development skills for [Claude Code](https://c
 
 > **TR:** SAP geliştirme için kapsamlı Claude Code skill koleksiyonu. 23 skill, 4 agent, 5 komut, 3 hook ve 4 MCP profili ile S/4HANA, BTP, ABAP, RAP, Fiori, HANA, Güvenlik, Entegrasyon ve daha fazlasını kapsar.
 
-## Quick Start
+## Installation
 
-### Option 1: Clone and Install
+Pick the method that matches your operating system. **Run these commands in your project root**, not in the Claude Code chat.
+
+### Easiest: use the installer scripts
+
+**Linux / macOS / Git Bash:**
 ```bash
-git clone https://github.com/YOUR_USERNAME/sap-skills.git
-# Copy desired skills to your project
-cp -r sap-skills/skills/sap-rap-comprehensive .claude/skills/
+git clone https://github.com/efeumutaslan/SAP-SKILLS.git
+cd SAP-SKILLS
+./install.sh                              # All skills, project-local
+./install.sh --global                     # All skills, global
+./install.sh sap-rap-comprehensive        # Only one skill
 ```
 
-### Option 2: Add to Project Skills Directory
+**Windows PowerShell:**
+```powershell
+git clone https://github.com/efeumutaslan/SAP-SKILLS.git
+cd SAP-SKILLS
+.\install.ps1                             # All skills, project-local
+.\install.ps1 -Global                     # All skills, global
+.\install.ps1 sap-rap-comprehensive       # Only one skill
+```
+
+### Manual install — Linux / macOS / Git Bash
 ```bash
-# From your SAP project root
+git clone https://github.com/efeumutaslan/SAP-SKILLS.git
 mkdir -p .claude/skills
-cp -r path/to/sap-skills/skills/* .claude/skills/
+cp -r SAP-SKILLS/skills/* .claude/skills/
 ```
 
-### Option 3: Global Installation
-```bash
-# Available to all your projects
-cp -r path/to/sap-skills/skills/* ~/.claude/skills/
+### Windows PowerShell
+```powershell
+git clone https://github.com/efeumutaslan/SAP-SKILLS.git
+New-Item -ItemType Directory -Force -Path .claude\skills | Out-Null
+Copy-Item -Recurse -Force SAP-SKILLS\skills\* .claude\skills\
 ```
 
-### Option 4: Use MCP Profile
-```bash
-# Copy a pre-configured MCP profile for your role
-cp sap-skills/mcp-configs/abap-developer.json .mcp.json
-# Edit connection details (hostname, credentials)
+### Windows CMD
+```cmd
+git clone https://github.com/efeumutaslan/SAP-SKILLS.git
+mkdir .claude\skills
+xcopy /E /I /Y SAP-SKILLS\skills\* .claude\skills\
 ```
+
+### Global install (available to all projects)
+Replace `.claude/skills` above with:
+- **Linux/macOS:** `~/.claude/skills`
+- **Windows:** `$env:USERPROFILE\.claude\skills` (PowerShell) or `%USERPROFILE%\.claude\skills` (CMD)
+
+### Install only specific skills
+```bash
+# After cloning, copy just the skills you need
+cp -r SAP-SKILLS/skills/sap-rap-comprehensive .claude/skills/
+cp -r SAP-SKILLS/skills/sap-cap-advanced .claude/skills/
+```
+
+### Use a pre-configured MCP profile (optional)
+```bash
+cp SAP-SKILLS/mcp-configs/abap-developer.json .mcp.json
+# Then edit .mcp.json to add your SAP system credentials
+```
+
+After installation, restart Claude Code. The skills auto-activate when you mention SAP topics like "RAP business object", "CAP service", or "HANA calculation view".
+
+> **Common mistake:** Do not paste the GitHub repo title (e.g., `GitHub - efeumutaslan/SAP-SKILLS: ...`) into your terminal. Only run the `git clone` commands above.
 
 ## Available Skills (23)
 
